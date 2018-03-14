@@ -1,0 +1,76 @@
+<template name="locationDetail">
+
+   <div class="ui segment">
+      <p class="titulo"><i class="marker icon"></i> {{_ "location"}}</p>
+      <hr>
+      <div class="contentProfile">
+
+        {{#with getLocation}}
+
+         <div class="row">
+                  
+            <div class="col-md-6">
+               <p class="titulo">{{_ "name"}}</p>
+               <p class="parrafo-view">{{name}}</p>
+            </div>
+            <div class="col-md-6">
+               <p class="titulo">{{_ "description"}}</p>
+               <p class="parrafo-view">{{description}}</p>
+            </div>
+         </div>
+
+         <hr>
+         <div class="row">
+            <div class="col-md-6">
+               <p class="titulo">{{_ "picture"}}</p>
+               <a target="_blank" href="{{getImage picture}}">
+                  <img class="ui image small" src="{{getImage picture}}">
+               </a>
+            </div>
+            <div class="col-md-6">
+               <p class="titulo">{{_ "map"}}</p>
+               <a target="_blank" href="{{getImage map}}">
+                  <img class="ui image" src="{{getImage map}}">
+               </a>
+            </div>
+         </div>
+
+         <hr>
+         <div class="row">
+            <div class="col-md-6">
+               <form class="ui form">
+                  <div class="field">
+                     <p class="titulo">{{_ "task´s_list"}}</p>
+                  </div>
+
+                  {{#each getListTasks _id}}
+                     <div class="field">
+                        <a class="ui right fluid button btnListTask" data-id="{{_id}}" target="_blank">
+                           {{index}}.- {{name}}
+                        </a>
+                     </div>
+                  {{/each}}
+               </form>
+            </div>
+
+            <div class="col-md-6">
+               <form class="ui form">
+                  <div class="field">
+                     <p class="titulo">{{_ "tasks"}}</p>
+                  </div>
+
+                  {{#each getTasks _id}}
+                     <div class="field">
+                        <button class="ui right fluid button btnTask {{getTaskColor _id}}" data-id="{{_id}}">
+                           {{index}}.- {{name}}
+                        </button>
+                     </div>
+                  {{/each}}
+               </form>
+            </div>
+         </div>
+
+      {{/with}}
+      </div>
+   </div>
+</template>

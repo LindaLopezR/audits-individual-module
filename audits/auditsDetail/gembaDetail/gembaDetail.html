@@ -1,0 +1,86 @@
+<template name="gembaDetail">
+
+  <div class="ui active dimmer" id="loadingGemba">
+    <div class="ui loader"></div>
+  </div>
+
+  <a class="ui right floated icon button teal btnQRGemba" style=" margin-top: -40px; margin-right: 100px;" href="/qr/{{gemba._id}}">
+    <i class="qrcode icon"></i> {{_ "qr_code"}}
+  </a>
+
+  <div class="ui segment">
+    <p class="titulo"><i class="search icon"></i> {{_ "audit"}}</p>
+    <hr>
+    <div class="contentProfile">
+      <div class="row">
+        <div class="col-md-5">
+          <form class="ui form">
+            <div class="field">
+              <p class="titulo">{{_ "name"}}</p>
+              <p class="parrafo-view">{{gemba.name}}</p>
+            </div>
+            <div class="field">
+              <p class="titulo">{{_ "description"}}</p>
+              <p class="parrafo-view">{{gemba.description}}</p>
+            </div>
+            <div class="field">
+              <p class="titulo">{{_ "category"}}</p>
+              <p class="parrafo-view">{{categoryLabel gemba.category}}</p>
+            </div>
+            <div class="field">
+              {{#if gemba.active}}
+                <h3 class="ui green header">{{_ "enabled"}}</h3>
+              {{else}}
+                <h3 class="ui red header">{{_ "disabled"}}</h3>
+              {{/if}}
+            </div>
+          </form>
+        </div>
+        <div class="col-md-3">
+          {{#if gemba.periodical}}
+            <form class="ui form">
+              <div class="field">
+                <p class="titulo">{{_ "starts_on"}}</p>
+                <p class="parrafo-view">{{dateLabel}}</p>
+              </div>
+              <div class="field">
+                <p class="titulo">{{_ "time_to_complete"}}</p>
+                <p class="parrafo-view">{{timeToCompleteLabel}}</p>
+              </div>
+              <div class="field">
+                <p class="titulo">{{_ "repeat"}}</p>
+                <p class="parrafo-view"> {{gemba.repeat.number}} {{gemba.repeat.period}}</p>
+              </div>
+            </form>
+          {{else}}
+            <h2>{{_ "on_demmand"}}</h2>
+          {{/if}}
+        </div>
+        <div class="col-md-4">
+          <form class="ui form">
+            <div class="field">
+              <p class="titulo">{{_ "locations"}}</p>
+            </div>
+            {{#each getLocations}}
+              <div class="field">
+                <button class="ui right labeled icon fluid button btnLoc {{getLocationColor _id}}" data-id="{{_id}}">
+                  <i class="right arrow icon"></i>
+                  {{index}}.- {{name}}
+                </button>
+              </div>
+            {{/each}}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  {{#if ableToEdit}}
+  <button class="ui right floated icon button blue" style=" margin-top: -40px; margin-right: 120px;" id="btnEditGemba" data-id="{{gemba._id}}">
+    <i class="edit icon"></i>
+  </button>
+  {{/if}}
+  -->
+
+</template>

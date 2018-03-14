@@ -1,0 +1,115 @@
+<template name="taskDetail">
+
+  <div class="ui segment">
+    <p class="titulo"><i class="tasks icon"></i> {{_ "task"}}</p>
+    <hr>
+    <div class="contentProfile">
+
+      {{#if showTask}}
+        {{#with getTask}}
+          <form class="ui form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="field">
+                  <p class="titulo">{{_ "name"}}</p>
+                  {{name}}
+                </div>
+                <div class="field">
+                  <p class="titulo">{{_ "instructions"}}</p>
+                  {{instructions}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="field">
+                  <p class="titulo">{{_ "rationale"}}</p>
+                  {{rationale}}
+                </div>
+
+                <div class="field">
+                  <p class="titulo">{{_ "critical"}}</p>
+                  {{#if critical}}
+                    {{_ "yes"}}
+                  {{else}}
+                    {{_ "no"}}
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="field">
+                  <p class="titulo">{{_ "pdf_documents"}}</p>
+                </div>
+              </div>
+            </div>
+               
+            <div class="row">
+              <div class="col-md-12">
+                <hr class="linea-azul">
+                <p class="titulo-turquesa">
+                  <i class="photo icon"></i>
+                  {{_ "picture"}}:
+                </p>
+
+                {{#each getDocumentsByType docs 'image'}}
+                  <div class="imagen-small">
+                    <a href="{{this}}" target="_blank">
+                        <img src="{{this}}" class="img-responsive ui rounded small image">
+                    </a>
+                  </div>
+                {{/each}}
+              </div>
+
+              <div class="col-md-12">
+                <hr>
+                <p class="titulo-turquesa">
+                  <i class="record icon"></i>
+                  {{_ "video"}}:
+                </p>
+
+                {{#each getDocumentsByType docs 'video'}}
+                  <a href="{{this}}" target="_blank">
+                    <video class="rounded image" width="160px" height="120px" controls>
+                      <source src="{{this}}">
+                    </video>
+                  </a>
+                {{/each}}
+              </div>
+
+              <div class="col-md-12">
+                <hr>
+                <p class="titulo-turquesa">
+                  <i class="unmute icon"></i> {{_ "audio"}}:
+                </p>
+
+                <ul class="task-ViewList">
+                  {{#each getDocumentsByType docs 'audio'}}
+                    <a href="{{this}}" target="_blank">
+                      <li>{{this}}</li>
+                    </a>
+                  {{/each}}
+                </ul>
+              </div>
+
+              <div class="col-md-12">
+                <hr>
+                <p class="titulo-turquesa">
+                  <a href="{{this}}" target="_blank">
+                    <i class="file pdf outline icon"></i> {{_ "pdf"}}:
+                  </a>
+                </p>
+
+                {{#each getDocumentsByType docs 'pdf'}}
+                  <div class="imagen-small">
+                    <img src="{{this}}" class="img-responsive ui rounded small image">
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          </form>
+        {{/with}}
+      {{/if}}
+    </div>
+  </div>
+</template>

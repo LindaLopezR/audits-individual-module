@@ -1,0 +1,25 @@
+<template name="audits">
+
+   <div class="container">
+      <div class="row">
+         <div class="col-md-6">
+            <h2><i class="browser icon"></i> {{_ "gemba_walks"}}</h2>
+         </div>
+         <div class="col-md-6">
+            <a class="ayuda float-right" target="_blank" href="https://igoandsuite.zendesk.com/hc/es/sections/115000516111-Gemba-Walk">
+            <i class="fa fa-life-ring"></i>
+            {{_ "help"}}</a>
+         </div>
+      </div>
+      <div class="row box">
+         <button class="ui left floated submit button boton" id="btnNewGemba">
+            {{_ "new_gemba_walk"}}
+         </button>
+
+         <div class="tableGemba">
+            {{> reactiveTable settings=settings}}
+         </div>
+      </div>
+   </div>
+
+</template>
